@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vista de admin</title>
+</head>
+<body>
+    <?php
+
+        //if no necesario?
+    
+        if($_SESSION['user']->role == 2) {
+            echo '<h2>Administración de Usuarios</h2>';
+            echo 'Hola '.$_SESSION['user']->fullName.'<br> 
+            <a href="index.php?login&logout">Logout</a><br>
+            <h3>Lista de Usuarios</h3>
+            <ul>';
+            foreach ($users as $user) {
+                echo '<li>
+                '.$user.', 
+                Rol : '.(($user->role == 2) ? "Administrador" : "Usuario registrado").'. ';
+                if ($user->role == 2) {
+                    echo '<a href="index.php?admin&makeBase='.$user->Id.'">Hacer usuario base</a>';  
+                } else {
+                    echo '<a href="index.php?admin&makeAdmin='.$user->Id.'">Hacer admin</a>';
+                }   
+                echo ' <a href="index.php?admin&editUser='.$user->Id.'">Editar</a> 
+                <a href="index.php?admin&deleteUser='.$user->Id.'">Eliminar usuario</a></li>';              
+                
+                
+            }
+            echo '</ul>';
+
+            echo '<h3>Lista de Productos</h3>
+            <a href="index.php?admin&addProduct">Añadir nuevo producto</a>';
+
+            if (count($products) == 0) {
+                echo 'No hay productos';
+            } else {
+                echo '<ul>';
+                foreach ($products as $product) {
+                    echo '<li>'.$product.'
+                    <a href="index.php?admin&deleteProduct='.$product->Id.'">Eliminar producto</a>
+                    </li>';
+                }
+                echo '</ul>';
+            }
+
+        }
+    ?>
+    
+    
+</body>
+</html>

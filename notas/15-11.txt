@@ -1,0 +1,15 @@
+admin
+    crear productos
+    administrar usuario
+
+cliente
+    añadir productos
+    terminar pedido (vista carrito)
+
+
+
+tablas
+    users
+    products 
+    orders
+        

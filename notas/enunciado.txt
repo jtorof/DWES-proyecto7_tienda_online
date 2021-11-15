@@ -1,0 +1,10 @@
+Realizar una aplicación web que permita a usuarios registrarse.
+
+Los usuarios administradores podrán crear productos de los que queremos saber nombre, descripción, 
+imagen, precio y cantidad. Y podrán administrar los usuarios, asi como cualquier tarea que pueda 
+hacer un usuario cliente.
+
+Los usuarios clientes podrán añadir productos al carrito y confirmar pedidos. 
+Al confirmar el pedido la cantidad de cada producto vendido tendrá que reducirse como corresponda.
+
+El usuario podrá ver un listado de sus pedidos realizados.
