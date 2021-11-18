@@ -5,6 +5,8 @@ require_once('models/userModel.php');
 require_once('models/userRepository.php');
 require_once('models/productModel.php');
 require_once('models/productRepository.php');
+require_once('models/orderLineModel.php');
+require_once('models/orderLineRepository.php');
 
 session_start();
 
@@ -25,17 +27,14 @@ if (isset($_GET['login'])) {
     //die(); lo quito y no pasa nada
 } elseif (isset($_GET['admin'])) {
     require_once('controllers/adminController.php');
-} elseif (isset($_GET['basicUser'])) {
-    //require_once('controllers/basicUserController.php');
+} elseif (isset($_GET['basket'])) {
+    require_once('controllers/basketController.php');
 } elseif ($_SESSION['user']->role == 2) {
     $users=userRepository::getUsers(); //profesor lo hace null para comprobar que la funcion no devuelva null, aunque no es necesario
     $products=productRepository::getProducts();
     require_once('views/adminView.phtml');
-} elseif ($_SESSION['user']->role == 1) {
-    $users=userRepository::getUsers();
-    //$friends=friendRepository::getFriends();
-    //require_once('views/basicUserView.phtml');
 } else {
+    $products=productRepository::getProducts();
     require_once('views/mainView.phtml');
 }
 

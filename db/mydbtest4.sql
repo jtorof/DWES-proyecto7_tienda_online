@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 15-11-2021 a las 18:43:55
+-- Tiempo de generación: 18-11-2021 a las 21:42:11
 -- Versión del servidor: 10.4.21-MariaDB
 -- Versión de PHP: 8.0.10
 
@@ -22,6 +22,43 @@ SET time_zone = "+00:00";
 --
 CREATE DATABASE IF NOT EXISTS `mydbtest4` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 USE `mydbtest4`;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `orderlines`
+--
+
+DROP TABLE IF EXISTS `orderlines`;
+CREATE TABLE `orderlines` (
+  `id` int(6) NOT NULL,
+  `orderid` int(6) DEFAULT NULL,
+  `productid` int(6) NOT NULL,
+  `quantity` int(6) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `orderlines`
+--
+
+INSERT INTO `orderlines` (`id`, `orderid`, `productid`, `quantity`) VALUES
+(1, NULL, 3, 3),
+(2, NULL, 5, 2);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `orders`
+--
+
+DROP TABLE IF EXISTS `orders`;
+CREATE TABLE `orders` (
+  `id` int(6) NOT NULL,
+  `customerid` int(6) NOT NULL,
+  `totalcost` int(6) NOT NULL,
+  `date` date NOT NULL DEFAULT current_timestamp(),
+  `status` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -45,7 +82,8 @@ CREATE TABLE `products` (
 
 INSERT INTO `products` (`id`, `name`, `description`, `price`, `stock`, `hidden`) VALUES
 (3, 'Producto 1', 'p1', 1, 10, 0),
-(4, 'Producto 2', 'p2', 2, 20, 0);
+(4, 'Producto 2', 'p2', 2, 20, 0),
+(5, 'Producto 3', 'p3', 3, 30, 0);
 
 -- --------------------------------------------------------
 
@@ -79,6 +117,18 @@ INSERT INTO `users` (`id`, `fullname`, `username`, `password`, `role`, `email`, 
 --
 
 --
+-- Indices de la tabla `orderlines`
+--
+ALTER TABLE `orderlines`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `orders`
+--
+ALTER TABLE `orders`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `products`
 --
 ALTER TABLE `products`
@@ -96,10 +146,22 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT de la tabla `orderlines`
+--
+ALTER TABLE `orderlines`
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de la tabla `orders`
+--
+ALTER TABLE `orders`
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `users`

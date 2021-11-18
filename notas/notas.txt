@@ -1,0 +1,15 @@
+tabla pedidos
+    id
+    usuario propietario
+    total
+    date
+tabla linea de pedido 
+    id  
+    id pedido
+    id producto
+    cantidad
+
+    repos
+
+
+    lineas de pedido que se correspan on pedido=null

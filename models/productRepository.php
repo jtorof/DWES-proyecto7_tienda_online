@@ -12,6 +12,13 @@ class ProductRepository {
 		return $products;
 	}
 
+    public static function getProductById($id) {
+        $db=Conectar::conexion();
+        $result = $db->query("SELECT * FROM products WHERE id='".$id."'");
+        if($data=$result->fetch_assoc())
+        return new Product($data);
+    }
+
 	public static function addProduct ($n, $d, $p, $s) {
         $db=Conectar::conexion();      
         //comprobar si existe ya ese usuario?

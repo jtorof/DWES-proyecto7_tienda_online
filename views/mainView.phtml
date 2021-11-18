@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panel admin</title>
+    <title>Tienda online</title>
 </head>
 <body>
-    <h1>Panel de administración</h1>
+    <h1>Tienda online</h1>
     <?php
         
         if($_SESSION['user']->role == 0) {
@@ -16,7 +16,26 @@
         } else {
             echo 'Hola '.$_SESSION['user']->fullName.'<br> 
             <a href="index.php?login&logout">Logout</a>';
-        }       
+        }  
+        
+        echo '<h3>Lista de Productos</h3>';    
+
+        if (count($products) == 0) {
+            echo 'No hay productos';
+        } else {
+            echo '<ul>';
+            foreach ($products as $product) {
+                echo '<li>'.$product.'';
+                if ($_SESSION['user']->role == 1) {
+                    echo '<form action="index.php?basket" method="post">
+                    <input type="number" name="quantity" placeholder="Cantidad">                     
+                    <input type="hidden" name="productId" value="'.$product->id.'"> 
+                    <input type="submit" name="addingProductToBasket" value="Añadir al carrito">                 
+                    </form>';
+                }
+            }
+            echo '</ul>';
+        }
 
     ?>
     
