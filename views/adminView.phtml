@@ -22,12 +22,12 @@
                 '.$user.', 
                 Rol : '.(($user->role == 2) ? "Administrador" : "Usuario registrado").'. ';
                 if ($user->role == 2) {
-                    echo '<a href="index.php?admin&makeBase='.$user->Id.'">Hacer usuario base</a>';  
+                    echo '<a href="index.php?admin&makeBase='.$user->id.'">Hacer usuario base</a>';  
                 } else {
-                    echo '<a href="index.php?admin&makeAdmin='.$user->Id.'">Hacer admin</a>';
+                    echo '<a href="index.php?admin&makeAdmin='.$user->id.'">Hacer admin</a>';
                 }   
-                echo ' <a href="index.php?admin&editUser='.$user->Id.'">Editar</a> 
-                <a href="index.php?admin&deleteUser='.$user->Id.'">Eliminar usuario</a></li>';              
+                echo ' <a href="index.php?admin&editUser='.$user->id.'">Editar</a> 
+                <a href="index.php?admin&deleteUser='.$user->id.'">Eliminar usuario</a></li>';              
                 
                 
             }
@@ -41,9 +41,10 @@
             } else {
                 echo '<ul>';
                 foreach ($products as $product) {
-                    echo '<li>'.$product.'
-                    <a href="index.php?admin&deleteProduct='.$product->Id.'">Eliminar producto</a>
-                    </li>';
+                    /* echo '<li>'.$product.'
+                    <a href="index.php?admin&deleteProduct='.$product->id.'">Eliminar producto</a>
+                    </li>'; */
+                    echo '<li>'.$product.'';
                 }
                 echo '</ul>';
             }

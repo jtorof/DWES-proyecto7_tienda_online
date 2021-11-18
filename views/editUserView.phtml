@@ -9,14 +9,17 @@
 <body>
     
         <?php
-            echo '<form action="index.php?admin&saveUser='.$user->getId().'" method="POST">
-                <input type="text" name="fullname" value="'.$user->getFullName().'">
-                <input type="text" name="username" value="'.$user->getUserName().'">
-                <input type="email" name="email" value="'.$user->getEmail().'">
+            echo '<form action="index.php?admin&saveUser='.$user->id.'" method="POST">
+                <input type="text" name="fullname" value="'.$user->fullName.'">
+                <input type="text" name="username" value="'.$user->userName.'">
+                <input type="email" name="email" value="'.$user->email.'">
                 <input type="submit" name="" value="Actualizar datos">
                 </form>';
         ?>        
     
     <!-- boton cancelar -->
+    <a href="index.php">
+        <button>Inicio</button>
+    </a>
 </body>
 </html>

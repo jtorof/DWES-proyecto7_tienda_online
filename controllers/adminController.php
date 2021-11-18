@@ -6,18 +6,18 @@
         userRepository::changeRole($_GET['makeBase'], 1);
     }
     if(isset($_GET['editUser'])) {
-        if ($user=userRepository::getUserById($_GET['edit'])){
+        if ($user=userRepository::getUserById($_GET['editUser'])){
             require_once('views/editUserView.phtml');
             die();
         }
     }
     if(isset($_GET['saveUser'])) {
-        if (isset($_POST['fullname'])) {
-            $test=userRepository::changeData($_GET['save'], $_POST['fullname'], $_POST['username'], $_POST['email']);
+        if (isset($_POST['fullname']) && isset($_POST['username']) && isset($_POST['email'])) {
+            $test=userRepository::changeData($_GET['saveUser'], $_POST['fullname'], $_POST['username'], $_POST['email']);             //me hace falta pero no sé por qué
         }        
     }
     if(isset($_GET['deleteUser'])) {
-        userRepository::deleteUser($_GET['delete']);
+        userRepository::deleteUser($_GET['deleteUser']);
     }
 
     if(isset($_GET['deleteProduct'])) {
@@ -25,7 +25,17 @@
     }
     if(isset($_GET['addProduct'])) {
         //userRepository::deleteUser($_GET['delete']);
+        require_once('views/addProductView.phtml');
+        die();
     }
+    if(isset($_GET['addingProduct'])) {
+        if (isset($_POST['productName']) && isset($_POST['productDescription']) && isset($_POST['productPrice']) && isset($_POST['productStock'])) {
+            productRepository::addProduct($_POST['productName'], $_POST['productDescription'], $_POST['productPrice'], $_POST['productStock']);
+            echo 'hola';
+        }
+    }
+    header('location: index.php');
+
     
 
 ?>

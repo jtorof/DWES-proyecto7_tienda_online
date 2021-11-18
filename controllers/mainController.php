@@ -19,10 +19,10 @@ if(!isset($_SESSION['user'])) {
 
 if (isset($_GET['login'])) {
     require_once('controllers/loginController.php');
-    die();
+    //die(); lo quito y no pasa nada
 } elseif (isset($_GET['register'])) {
     require_once('controllers/registerController.php');        
-    die();
+    //die(); lo quito y no pasa nada
 } elseif (isset($_GET['admin'])) {
     require_once('controllers/adminController.php');
 } elseif (isset($_GET['basicUser'])) {

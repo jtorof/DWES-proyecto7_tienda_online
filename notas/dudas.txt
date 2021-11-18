@@ -1,0 +1,2 @@
+die() varios en controllers
+forzar redireccionamiento en adminController
