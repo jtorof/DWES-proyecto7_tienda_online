@@ -8,6 +8,7 @@ tabla linea de pedido
     id pedido
     id producto
     cantidad
+    TO DO    añadir tb id del usuario
 
     repos
 
