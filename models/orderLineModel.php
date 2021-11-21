@@ -25,6 +25,11 @@ class OrderLine {
             return $this->$property;
         }
     }
+
+    public function getCost() {
+        $product=productRepository::getProductById($this->productId);
+        return $cost=$product->price * $this->quantity;
+    }
 }
 
 ?>

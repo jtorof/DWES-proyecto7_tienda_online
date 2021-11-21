@@ -1,13 +1,18 @@
 <?php
 
-if(isset($_POST['addingProductToBasket'])) {
+if (isset($_POST['addingProductToBasket'])) {
     if (isset($_POST['productId']) && isset($_POST['quantity'])) {
-        echo 'hola';
-        var_dump($_POST['productId']);
-        var_dump($_POST['quantity']);
-        orderLineRepository::addUnconfirmedOrderLine($_POST['productId'], $_POST['quantity']);             //me hace falta pero no sé por qué
+        if ($_POST['quantity']>0) {
+            orderLineRepository::addUnconfirmedOrderLine($_POST['productId'], $_POST['quantity']);             //me hace falta pero no sé por qué     
+        }
+           
     }        
 }
+if (isset($_GET['checkout'])) {
+    orderLineRepository::confirmOrderLines(OrderRepository::makeOrder($_GET['checkout']));
+}
+
+header('location: index.php');
 
 
 ?>

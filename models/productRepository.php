@@ -35,6 +35,13 @@ class ProductRepository {
         }
         $db->close();
     }
+
+    public static function adjustStock($id, $substraction){
+        $db=Conectar::conexion();         
+        $db->query("UPDATE products
+            SET stock=stock - '".$substraction."'
+            WHERE id='".$id."'");        
+    }
 }
 
 ?>

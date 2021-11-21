@@ -31,10 +31,37 @@
                     <input type="number" name="quantity" placeholder="Cantidad">                     
                     <input type="hidden" name="productId" value="'.$product->id.'"> 
                     <input type="submit" name="addingProductToBasket" value="Añadir al carrito">                 
-                    </form>';
+                    </form></li>';
                 }
             }
             echo '</ul>';
+        }
+
+        if ($_SESSION['user']->role == 1) {
+            echo '<h3>Carrito</h3>'; 
+            
+            if (count($basketItems) == 0) {
+                echo 'Carrito vacío';
+            } else {
+                echo '<ul>';
+                foreach ($basketItems as $basketItem) {
+                    echo '<li>'.$basketItem.' SubTotal: '.$basketItem->getCost().'€</li>';
+                }
+                echo '<li>Total: '.$basketTotal.'€</li></ul>
+                <a href="index.php?basket&checkout='.$basketTotal.'">Checkout</a>';                
+            }
+
+            echo '<h3>Pedidos realizados</h3>'; 
+            
+            if (count($orders) == 0) {
+                echo 'No hay pedidos';
+            } else {
+                echo '<ul>';
+                foreach ($orders as $order) {
+                    echo '<li>'.$order.'</li>';
+                }
+                echo '</ul>';                
+            }
         }
 
     ?>

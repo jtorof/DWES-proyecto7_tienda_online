@@ -7,6 +7,8 @@ require_once('models/productModel.php');
 require_once('models/productRepository.php');
 require_once('models/orderLineModel.php');
 require_once('models/orderLineRepository.php');
+require_once('models/orderModel.php');
+require_once('models/orderRepository.php');
 
 session_start();
 
@@ -33,6 +35,16 @@ if (isset($_GET['login'])) {
     $users=userRepository::getUsers(); //profesor lo hace null para comprobar que la funcion no devuelva null, aunque no es necesario
     $products=productRepository::getProducts();
     require_once('views/adminView.phtml');
+} elseif ($_SESSION['user']->role == 1) {
+    $products=productRepository::getProducts();
+    $basketItems=orderLineRepository::getOrderLinesByOrderId('NULL'); 
+    $basketTotal=0;
+    foreach ($basketItems as $basketItem) {
+        $basketTotal += $basketItem->getCost();
+
+    }
+    $orders=orderRepository::getOrdersByUserId($_SESSION['user']->id);
+    require_once('views/mainView.phtml');
 } else {
     $products=productRepository::getProducts();
     require_once('views/mainView.phtml');
