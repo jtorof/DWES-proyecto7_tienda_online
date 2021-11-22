@@ -5,7 +5,6 @@ if(isset($_POST['registeringIn'])){
         userRepository::register($_POST['fullname'], $_POST['username'], $_POST['password'], $_POST['email']);
         header('location: index.php');
     } else {
-        //posible mensaje de error por problemas con la contraseña
         require_once('views/registerView.phtml');
     }     
 } else {

@@ -8,8 +8,7 @@ if (isset($_POST['addingProductToBasket'])) {
            
     }        
 }
-if (isset($_GET['checkout'])) {
-    //orderLineRepository::confirmOrderLines(OrderRepository::makeOrder($_GET['checkout']));    
+if (isset($_GET['checkout'])) {   
     orderRepository::makeOrder();    
 }
 

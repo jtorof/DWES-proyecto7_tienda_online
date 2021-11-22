@@ -5,7 +5,7 @@
             $_SESSION['user']=$u;
 
             if($_SESSION['user']->role>0){
-                header('location: index.php'); //redireccionar recargar pag manteniendo datos de sesion
+                header('location: index.php');
             }
         } else {
             require_once('views/LoginView.phtml');

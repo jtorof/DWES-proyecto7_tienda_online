@@ -32,7 +32,7 @@ if (isset($_GET['login'])) {
 } elseif (isset($_GET['basket'])) {
     require_once('controllers/basketController.php');
 } elseif ($_SESSION['user']->role == 2) {
-    $users=userRepository::getUsers(); //profesor lo hace null para comprobar que la funcion no devuelva null, aunque no es necesario
+    $users=userRepository::getUsers(); 
     $products=productRepository::getProducts();
     require_once('views/adminView.phtml');
 } elseif ($_SESSION['user']->role == 1) {
