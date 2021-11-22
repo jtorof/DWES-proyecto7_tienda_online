@@ -10,7 +10,6 @@ class UserRepository {
 
     public static function register ($f, $u, $p, $e) {
         $db=Conectar::conexion();      
-        //comprobar si existe ya ese usuario?
         $exists=false;
         $users=userRepository::getUsers();
         foreach ($users as $user) {
@@ -30,7 +29,6 @@ class UserRepository {
 		$db=Conectar::conexion();
 		$users= array();
 		$result= $db->query("SELECT id, fullname, username, role, email FROM users WHERE hidden='0'");
-        //$result= $db->query("SELECT * FROM users");
 		while($row=$result->fetch_assoc()){
 				$users[]=new User($row);
 			}

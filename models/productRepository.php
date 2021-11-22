@@ -22,7 +22,6 @@ class ProductRepository {
 
 	public static function addProduct ($n, $d, $p, $s) {
         $db=Conectar::conexion();      
-        //comprobar si existe ya ese usuario?
         $exists=false;
         $products=productRepository::getProducts();
         foreach ($products as $product) {
@@ -40,7 +39,6 @@ class ProductRepository {
     public static function checkStock($id, $substraction){
         $db=Conectar::conexion(); 
         $product=productRepository::getProductById($id);
-        //var_dump($product->stock);
         if ($product->stock<$substraction) {
             return false;
         } else {

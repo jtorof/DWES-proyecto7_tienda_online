@@ -21,13 +21,10 @@ class OrderLineRepository {
         $db=Conectar::conexion();      
         $exists=false;
         $orderLines=orderLineRepository::getOrderLinesByOrderId('NULL');
-        //var_dump(count($orderLines) != 0);
         
-        if (count($orderLines) != 0) {  
-            //echo 'entra';          
+        if (count($orderLines) != 0) {        
             foreach ($orderLines as $orderLine) {
                 if ($orderLine->productId == $p) {
-                    //echo 'entra2';
                     $existingOrderLineId = $orderLine->id;
                     $exists = true;
                 }
@@ -42,7 +39,6 @@ class OrderLineRepository {
             $db->query("INSERT INTO orderlines (productid, quantity, userid) 
             VALUES('".$p."', '".$q."', '".$_SESSION['user']->id."')");            
         }
-        //$db->close();
     }
 
     public static function confirmOrderLines($orderId) {        
@@ -58,9 +54,6 @@ class OrderLineRepository {
                 if ($product->id == $orderLine->productId) {
                     $allOK=productRepository::checkStock($product->id, $orderLine->quantity);
                     if (!$allOK) {
-                        //echo 'no suficiente stock';
-                        //die();
-                        //return error
                         return null;
                     }         
                 }
@@ -75,26 +68,8 @@ class OrderLineRepository {
                 }
             }
         }
-        //die();
         return $orderLines;
     }
-
-    /* public static function confirmOrderLines($orderId) {
-        $db=Conectar::conexion();  
-        $db->query("UPDATE orderlines
-            SET orderid='".$orderId."'
-            WHERE orderid IS NULL AND userid='".$_SESSION['user']->id."'");  
-        $products=productRepository::getProducts();
-        $orderLines=orderLineRepository::getOrderLinesByOrderId($orderId);       
-        
-        foreach ($products as $product) {
-            foreach ($orderLines as $orderLine) {
-                if ($product->id == $orderLine->productId) {
-                    productRepository::adjustStock($product->id, $orderLine->quantity);
-                }
-            }
-        }
-    } */
 }
 
 ?>

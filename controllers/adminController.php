@@ -24,14 +24,12 @@
         //userRepository::deleteUser($_GET['delete']);
     } */
     if(isset($_GET['addProduct'])) {
-        //userRepository::deleteUser($_GET['delete']);
         require_once('views/addProductView.phtml');
         die();
     }
     if(isset($_GET['addingProduct'])) {
         if (isset($_POST['productName']) && isset($_POST['productDescription']) && isset($_POST['productPrice']) && isset($_POST['productStock'])) {
             productRepository::addProduct($_POST['productName'], $_POST['productDescription'], $_POST['productPrice'], $_POST['productStock']);
-            //echo 'hola';
         }
     }
     header('location: index.php');

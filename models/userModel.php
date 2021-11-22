@@ -17,7 +17,6 @@ class User {
 
     //método mágico toString
     public function __toString() {
-        //return $this->fullName;
         return 'Nombre completo: '.$this->fullName.', Usuario: '.$this->userName.', Email: '.$this->email.'';
     }   
 
@@ -25,11 +24,7 @@ class User {
     public function __get($property) {
         if (property_exists($this, $property)) {
             return $this->$property;
-        } /* elseif ($property == "friends") {
-            return userRepository::getFriends($this->id);
-        } elseif ($property == "notFriends") {
-            return userRepository::getNotFriends($this->id);
-        } */
+        } 
     }
 }
 
