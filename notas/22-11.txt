@@ -1,0 +1,9 @@
+orders-status para carrito?
+
+
+
+primero tablas
+luego esqueletp
+luego mostrar cosas uqe hagamos nosotros en phpadmin para ver que los modelos funcionan
+luego poder meter cosas a través del sitio
+luego modificaciones a lo que hay

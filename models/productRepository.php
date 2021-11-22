@@ -5,7 +5,8 @@ class ProductRepository {
 	public static function getProducts(){
 		$db=Conectar::conexion();
 		$products= array();
-		$result= $db->query("SELECT * FROM products WHERE hidden='0'");
+		$result= $db->query("SELECT * FROM products WHERE hidden='0' AND stock>'0'");
+        //trigger para que cuando stock=0 hidden=1 y quitar el stock<0 ?
 		while($row=$result->fetch_assoc()){
 				$products[]=new Product($row);
 			}
@@ -34,6 +35,17 @@ class ProductRepository {
             VALUES('".$n."', '".$d."', '".$p."', '".$s."')");
         }
         $db->close();
+    }
+
+    public static function checkStock($id, $substraction){
+        $db=Conectar::conexion(); 
+        $product=productRepository::getProductById($id);
+        //var_dump($product->stock);
+        if ($product->stock<$substraction) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
     public static function adjustStock($id, $substraction){

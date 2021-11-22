@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 18-11-2021 a las 21:42:11
+-- Tiempo de generación: 22-11-2021 a las 18:43:35
 -- Versión del servidor: 10.4.21-MariaDB
 -- Versión de PHP: 8.0.10
 
@@ -34,16 +34,32 @@ CREATE TABLE `orderlines` (
   `id` int(6) NOT NULL,
   `orderid` int(6) DEFAULT NULL,
   `productid` int(6) NOT NULL,
-  `quantity` int(6) NOT NULL
+  `quantity` int(6) NOT NULL,
+  `userid` int(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `orderlines`
 --
 
-INSERT INTO `orderlines` (`id`, `orderid`, `productid`, `quantity`) VALUES
-(1, NULL, 3, 3),
-(2, NULL, 5, 2);
+INSERT INTO `orderlines` (`id`, `orderid`, `productid`, `quantity`, `userid`) VALUES
+(56, 33, 3, 11, 2),
+(57, 34, 3, 11, 2),
+(58, 35, 3, 12, 2),
+(59, 36, 3, 12, 2),
+(60, 37, 3, 12, 2),
+(61, 38, 3, 11, 2),
+(62, 39, 3, 11, 2),
+(63, 40, 3, 1, 2),
+(64, 40, 4, 1, 2),
+(65, 40, 5, 1, 2),
+(66, 40, 6, 1, 2),
+(67, 41, 3, 11, 2),
+(68, 42, 3, 10, 2),
+(69, 43, 3, 10, 2),
+(70, 44, 3, 10, 2),
+(72, 47, 3, 12, 2),
+(73, NULL, 3, 13, 2);
 
 -- --------------------------------------------------------
 
@@ -55,10 +71,33 @@ DROP TABLE IF EXISTS `orders`;
 CREATE TABLE `orders` (
   `id` int(6) NOT NULL,
   `customerid` int(6) NOT NULL,
-  `totalcost` int(6) NOT NULL,
+  `totalcost` int(6) DEFAULT NULL,
   `date` date NOT NULL DEFAULT current_timestamp(),
-  `status` varchar(20) NOT NULL
+  `status` varchar(40) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `orders`
+--
+
+INSERT INTO `orders` (`id`, `customerid`, `totalcost`, `date`, `status`) VALUES
+(40, 2, 10, '2021-11-22', 'confirmado'),
+(41, 2, NULL, '2021-11-22', 'stock insuficiente'),
+(42, 2, NULL, '2021-11-22', 'stock insuficiente'),
+(43, 2, NULL, '2021-11-22', 'stock insuficiente'),
+(44, 2, NULL, '2021-11-22', 'stock insuficiente'),
+(45, 2, NULL, '2021-11-22', 'stock insuficiente'),
+(46, 2, NULL, '2021-11-22', 'stock insuficiente'),
+(47, 2, NULL, '2021-11-22', 'stock insuficiente'),
+(48, 2, NULL, '2021-11-22', 'stock insuficiente'),
+(49, 2, NULL, '2021-11-22', 'stock insuficiente'),
+(50, 2, NULL, '2021-11-22', 'stock insuficiente'),
+(51, 2, NULL, '2021-11-22', 'stock insuficiente'),
+(52, 2, NULL, '2021-11-22', 'stock insuficiente'),
+(53, 2, NULL, '2021-11-22', 'stock insuficiente'),
+(54, 2, NULL, '2021-11-22', 'stock insuficiente'),
+(55, 2, NULL, '2021-11-22', 'stock insuficiente'),
+(56, 2, NULL, '2021-11-22', 'stock insuficiente');
 
 -- --------------------------------------------------------
 
@@ -81,9 +120,10 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `name`, `description`, `price`, `stock`, `hidden`) VALUES
-(3, 'Producto 1', 'p1', 1, 10, 0),
-(4, 'Producto 2', 'p2', 2, 20, 0),
-(5, 'Producto 3', 'p3', 3, 30, 0);
+(3, 'Producto 1', 'p1', 1, 9, 0),
+(4, 'Producto 2', 'p2', 2, 19, 0),
+(5, 'Producto 3', 'p3', 3, 29, 0),
+(6, 'Producto 4', 'p4', 4, 39, 0);
 
 -- --------------------------------------------------------
 
@@ -149,19 +189,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de la tabla `orderlines`
 --
 ALTER TABLE `orderlines`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
 
 --
 -- AUTO_INCREMENT de la tabla `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 
 --
 -- AUTO_INCREMENT de la tabla `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `users`

@@ -47,8 +47,11 @@
                 foreach ($basketItems as $basketItem) {
                     echo '<li>'.$basketItem.' SubTotal: '.$basketItem->getCost().'€</li>';
                 }
+                /* echo '<li>Total: '.$basketTotal.'€</li></ul>
+                <a href="index.php?basket&checkout='.$basketTotal.'">Checkout</a>';  */ 
                 echo '<li>Total: '.$basketTotal.'€</li></ul>
-                <a href="index.php?basket&checkout='.$basketTotal.'">Checkout</a>';                
+                <a href="index.php?basket&checkout">Checkout</a>'; 
+                              
             }
 
             echo '<h3>Pedidos realizados</h3>'; 

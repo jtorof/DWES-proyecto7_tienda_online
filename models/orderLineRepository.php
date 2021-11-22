@@ -19,7 +19,6 @@ class OrderLineRepository {
 
     public static function addUnconfirmedOrderLine($p, $q) {
         $db=Conectar::conexion();      
-        //comprobar si existe ya ese usuario?
         $exists=false;
         $orderLines=orderLineRepository::getOrderLinesByOrderId('NULL');
         //var_dump(count($orderLines) != 0);
@@ -46,7 +45,41 @@ class OrderLineRepository {
         //$db->close();
     }
 
-    public static function confirmOrderLines($orderId) {
+    public static function confirmOrderLines($orderId) {        
+        $db=Conectar::conexion();  
+        $db->query("UPDATE orderlines
+            SET orderid='".$orderId."'
+            WHERE orderid IS NULL AND userid='".$_SESSION['user']->id."'");  
+        $products=productRepository::getProducts();
+        $orderLines=orderLineRepository::getOrderLinesByOrderId($orderId);       
+        //cambiar a consulta multitabla?
+        foreach ($products as $product) {
+            foreach ($orderLines as $orderLine) {
+                if ($product->id == $orderLine->productId) {
+                    $allOK=productRepository::checkStock($product->id, $orderLine->quantity);
+                    if (!$allOK) {
+                        //echo 'no suficiente stock';
+                        //die();
+                        //return error
+                        return null;
+                    }         
+                }
+            }
+        }
+        if ($allOK) {
+            foreach ($products as $product) {
+                foreach ($orderLines as $orderLine) {
+                    if ($product->id == $orderLine->productId) {      
+                        productRepository::adjustStock($product->id, $orderLine->quantity);           
+                    }
+                }
+            }
+        }
+        //die();
+        return $orderLines;
+    }
+
+    /* public static function confirmOrderLines($orderId) {
         $db=Conectar::conexion();  
         $db->query("UPDATE orderlines
             SET orderid='".$orderId."'
@@ -55,22 +88,13 @@ class OrderLineRepository {
         $orderLines=orderLineRepository::getOrderLinesByOrderId($orderId);       
         
         foreach ($products as $product) {
-            //echo 'llega1';
             foreach ($orderLines as $orderLine) {
-                //echo 'llega2';
-                //var_dump($product->id);
-                //var_dump($orderLine->productId);
-
                 if ($product->id == $orderLine->productId) {
-                    /* echo 'llega3';
-                    var_dump($product->id);
-                    var_dump($orderLine->quantity); */
                     productRepository::adjustStock($product->id, $orderLine->quantity);
                 }
             }
         }
-        //die();
-    }
+    } */
 }
 
 ?>
